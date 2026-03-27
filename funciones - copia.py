@@ -37,7 +37,7 @@ def agregar_producto():
     print("Producto agregado correctamente ✅")
 
 # Esta función muestra todos los productos guardados
-def mostrar_inventario(inventario):
+def mostrar_inventario():
     print("\n--- Inventario ---")
     
     # Si no hay productos, avisamos
@@ -48,40 +48,8 @@ def mostrar_inventario(inventario):
         for producto in inventario:
             print(f"Producto: {producto['nombre']} | Precio: {producto['precio']} | Cantidad: {producto['cantidad']}")
 
-
-def buscar_producto(inventario,nombre):
-    for producto in inventario:
-        if producto["nombre"] == nombre:
-         print(f"El producto '{nombre}' se encuentra en el invetario.")
-         return producto
-    print(f"El producto '{nombre}' no se encuentra en el invetario.")
-    return None        
-
-
-def actualizar_producto(inventario, nombre, nuevo_precio=None, nueva_cantidad=None):
-    producto = buscar_producto(inventario,nombre)
-
-   
-    if nuevo_precio is not None:
-        producto["precio"] = nuevo_precio
-    if nueva_cantidad is not None:
-        producto["cantidad"] = nueva_cantidad
-        
-    print(f"El producto '{nombre}' se ha actualizado.")
-    return True
-
-def eliminar_producto(inventario, nombre):
-    producto = buscar_producto(inventario,nombre)
-
-    if producto is not None:
-        inventario.remove(producto)
-        print(f"\nEl producto '{nombre}' ha sido eliminado con exito.")
-        return True
-    print(f"El producto '{nombre}' no ha sido encontrado")
-    return False 
-
 # Esta función calcula estadísticas del inventario
-def calcular_estadisticas(inventario):
+def calcular_estadisticas():
 
     print("\n--- Estadísticas ---")
     
@@ -105,10 +73,20 @@ def calcular_estadisticas(inventario):
     print(f"Valor total del inventario: {valor_total}")
     print(f"Cantidad total de productos: {total_productos}")
 
+def buscar_producto():
+    return
+
+def actualizar_producto():
+    return
+
+def eliminar_producto():
+    return
 
 def guardar_csv():
     return
 
+def cargar_csv():
+    return
 
 def cargar_csv():
     return
