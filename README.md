@@ -1,184 +1,167 @@
-# Diagrama de Flujo
+# 📦 Sistema de Gestión de Inventario en Python
 
-![Diagrama de flujo](Diagrama_de_flujo.drawio.png)
-
-# Sistema Básico de Inventario en Python
-
-## Descripción
-
-Este programa es un **sistema simple de registro de inventario** desarrollado en Python.
-Permite al usuario ingresar información de productos como:
-
-- Nombre del producto
-- Precio
-- Cantidad disponible
-
-El programa calcula automáticamente el **costo total del producto** (precio × cantidad) y guarda la información en una lista de inventario.
-
-Además, incluye **validaciones básicas** para evitar que el usuario ingrese datos vacíos o incorrectos.
+![Diagrama de flujo](img/Diagrama_Flujo_H3.png)
 
 ---
 
-# Objetivo del Programa
+## 📖 Descripción
 
-El objetivo de este programa es practicar los **principios básicos de programación en Python**, como:
+Este proyecto es un **sistema de gestión de inventario en consola** desarrollado en Python.
+Permite administrar productos mediante operaciones CRUD, calcular estadísticas y guardar/cargar datos utilizando archivos CSV.
 
-- Uso de `while`
-- Uso de `if`
-- Manejo de errores con `try / except`
-- Uso de **listas**
-- Uso de **diccionarios**
-- Entrada de datos con `input()`
-- Salida de información con `print()`
+El sistema está diseñado aplicando principios de **modularidad**, **manejo de errores** y uso de **estructuras de datos** como listas y diccionarios.
 
 ---
 
-# Cómo Funciona el Programa
+## 🎯 Objetivo del Proyecto
 
-El programa funciona mediante un **ciclo repetitivo (`while`)** que permite registrar múltiples productos.
+Aplicar conceptos fundamentales e intermedios de Python, tales como:
 
-El proceso es el siguiente:
-
-1. El usuario ingresa el **nombre del producto**.
-2. El programa valida que el nombre **no esté vacío**.
-3. El usuario ingresa el **precio del producto**.
-4. El programa valida que el precio sea **un número válido**.
-5. El usuario ingresa la **cantidad del producto**.
-6. El programa valida que la cantidad sea **un número entero**.
-7. El sistema calcula el **costo total del producto**.
-8. Se muestra la información del producto registrado.
-9. El producto se guarda en una **lista de inventario**.
-10. El programa pregunta si el usuario desea **registrar otro producto**.
-
-Si el usuario escribe **"n"**, el programa termina.
+- Funciones y modularización
+- Listas, diccionarios y tuplas
+- Manejo de archivos CSV
+- Validación de datos
+- Manejo de excepciones (`try / except`)
+- Interacción por consola
 
 ---
 
-# Estructura del Código
+## ⚙️ Funcionalidades
 
-El programa utiliza los siguientes elementos de Python:
+El sistema incluye un menú interactivo con las siguientes opciones:
 
-### 1. Lista de Inventario
+1. ➕ Agregar producto
+2. 📋 Mostrar inventario
+3. 🔍 Buscar producto
+4. ✏️ Actualizar producto
+5. ❌ Eliminar producto
+6. 📊 Calcular estadísticas
+7. 💾 Guardar inventario en CSV
+8. 📂 Cargar inventario desde CSV
+9. 🚪 Salir
 
-Se utiliza una lista para almacenar los productos registrados.
+---
 
-```python
-inventario = []
+## 🧠 Estructura del Proyecto
+
 ```
-
-Cada producto se guarda dentro de la lista como un **diccionario**.
-
----
-
-### 2. Ciclo Principal
-
-El programa utiliza un ciclo `while True` para permitir registrar productos continuamente.
-
-```python
-while True:
-```
-
-Este ciclo solo termina cuando el usuario decide salir.
-
----
-
-### 3. Validación de Datos
-
-El programa evita errores verificando que los datos ingresados sean correctos.
-
-Ejemplo:
-
-```python
-while nombre == "":
-```
-
-Esto evita que el usuario deje el campo vacío.
-
----
-
-### 4. Manejo de Errores
-
-Se utiliza `try / except` para evitar errores cuando el usuario ingresa datos incorrectos.
-
-Ejemplo:
-
-```python
-try:
-    precio = float(precio_texto)
-except:
-    print("Error: Debe ingresar un número válido")
+HISTORIA_DE_USUARIO/
+│
+├── functions/
+│   ├── servicios.py   # Lógica del inventario (CRUD + estadísticas)
+│   ├── archivos.py    # Manejo de archivos CSV
+│
+├── img/
+│   └── Diagrama_Flujo_H3.png
+│
+├── main.py            # Menú principal e interacción con el usuario
+├── README.md
 ```
 
 ---
 
-### 5. Diccionario del Producto
+## 🗂️ Estructura de Datos
 
-Cada producto se guarda en un diccionario con su información.
+El inventario se maneja como una **lista de diccionarios**:
 
 ```python
-producto = {
-    "nombre": nombre,
-    "precio": precio,
-    "cantidad": cantidad,
-    "total": total
+{
+    "nombre": str,
+    "precio": float,
+    "cantidad": int
 }
 ```
 
 ---
 
-# Ejemplo de Uso
+## 📊 Estadísticas del Inventario
 
-Ejemplo de ejecución del programa:
+El sistema calcula automáticamente:
+
+- 🔢 Unidades totales
+- 💰 Valor total del inventario
+- 💎 Producto más caro
+- 📦 Producto con mayor cantidad en stock
+
+---
+
+## 💾 Persistencia de Datos (CSV)
+
+### ✔ Guardar inventario
+
+- Guarda los datos en formato CSV
+- Incluye encabezado: `nombre,precio,cantidad`
+- Maneja errores de escritura
+
+### ✔ Cargar inventario
+
+- Valida estructura del archivo
+- Omite filas inválidas
+- Permite:
+  - 🔄 Sobrescribir inventario
+  - 🔗 Fusionar inventarios
+
+### ✔ Manejo de errores
+
+- Archivo no encontrado → se crea automáticamente
+- Errores de formato → se reportan sin detener el programa
+
+---
+
+## ▶️ Cómo Ejecutar el Programa
+
+1. Abre una terminal en la carpeta del proyecto
+2. Ejecuta:
+
+```bash
+python main.py
+```
+
+3. Usa el menú para interactuar con el sistema
+
+---
+
+## 🧪 Validaciones Implementadas
+
+- Precio debe ser numérico y no negativo
+- Cantidad debe ser entera y no negativa
+- Opciones del menú válidas
+- Archivos CSV con formato correcto
+
+---
+
+## 📌 Ejemplo de Uso
 
 ```
-Ingrese el nombre del producto: Laptop
-Ingrese el precio del producto: 1200
-Ingrese la cantidad del producto: 2
+=== MENÚ PRINCIPAL ===
+1. Agregar producto
+2. Mostrar inventario
+...
 
-Producto: Laptop
-Precio: 1200
-Cantidad: 2
-Total: 2400
+Seleccione una opción: 1
 
-¿Desea registrar otro producto? (s/n): s
-```
+Ingrese el nombre del producto: Zapatos
+Ingrese el precio del producto: 50000
+Ingrese la cantidad del producto: 10
 
-Si el usuario decide salir:
-
-```
-¿Desea registrar otro producto? (s/n): n
-Ha salido con éxito
+Producto agregado correctamente ✅
 ```
 
 ---
 
-# Conceptos de Python Utilizados
+## 🚀 Posibles Mejoras Futuras
 
-El proyecto utiliza conceptos básicos de programación:
-
-- Variables
-- Listas
-- Diccionarios
-- Condicionales (`if`)
-- Bucles (`while`)
-- Manejo de excepciones (`try / except`)
-- Entrada de datos (`input`)
-- Salida de datos (`print`)
+- Interfaz gráfica (GUI)
+- Base de datos (SQLite o MySQL)
+- Exportación a Excel
+- Reportes avanzados
+- Búsqueda con filtros
 
 ---
 
-# Posibles Mejoras Futuras
+## 👨‍💻 Autor
 
-El programa puede mejorarse agregando funcionalidades como:
-
-- Mostrar todo el inventario registrado
-- Buscar productos por nombre
-- Eliminar productos
-- Guardar el inventario en un archivo
-- Crear un menú interactivo
+Proyecto desarrollado como parte de formación en programación en Python
+para fortalecer habilidades en lógica, estructuras de datos y persistencia.
 
 ---
-
-# Autor
-
-Proyecto desarrollado como práctica de **programación básica en Python** para aprender manejo de datos, validación de entradas y estructuras básicas del lenguaje.
